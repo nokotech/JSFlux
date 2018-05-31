@@ -10,6 +10,7 @@ module.exports = {
     output: {
         path: path.resolve('./dist'),
         filename: "[name].test.bundle.js",
+        devtoolModuleFilenameTemplate: 'srcmap/[resource-path]',
     },
     resolve: {
         extensions: ['.ts', '.js', '.jsx'],

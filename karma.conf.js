@@ -1,3 +1,6 @@
+var webpack = require('webpack');
+var isparta = require('isparta');
+
 // Karma configuration
 // Generated on Wed May 30 2018 17:01:05 GMT+0900 (JST)
 
@@ -15,8 +18,8 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'src/*.jsx',
-            'test/*.jsx'
+            'src/**/*.jsx',
+            'test/**/*.js'
         ],
 
 
@@ -28,7 +31,11 @@ module.exports = function(config) {
             'karma-sourcemap-loader',
             'karma-webpack',
             'karma-coverage',
-            'karma-mocha-reporter'
+            'karma-mocha-reporter',
+            'karma-chrome-launcher',
+            'karma-coverage-istanbul-reporter',
+            'karma-remap-istanbul',
+            'istanbul-instrumenter-loader'
         ],
 
 
@@ -39,7 +46,7 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/**/*.jsx': ['coverage'],
+            'src/**/*.jsx': ['webpack', 'sourcemap', 'coverage'],
             'test/**/*.js': ['webpack', 'sourcemap']
         },
 
@@ -47,7 +54,7 @@ module.exports = function(config) {
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress', 'coverage', /*'karma-remap-istanbul'*/],
 
 
         // web server port
@@ -69,7 +76,7 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS', /*'Chrome', 'Firefox', 'Safari'*/ ],
+        browsers: [/*'PhantomJS',*/ 'Chrome',/* 'Firefox', 'Safari'*/ ],
 
 
         // Continuous Integration mode
@@ -86,6 +93,6 @@ module.exports = function(config) {
             reporters: [{ type: 'lcov' }]
         },
 
-        webpack: require('./.config/webpack-test.config')
+        webpack: require('./.config/webpack-test.config'),
     })
 }
