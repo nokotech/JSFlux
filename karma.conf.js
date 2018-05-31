@@ -10,13 +10,25 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['mocha'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'src/*.js',
-            'test/*.js'
+            'src/*.jsx',
+            'test/*.jsx'
+        ],
+
+
+        // [Add babel] plugins
+        plugins: [
+            'karma-phantomjs-launcher',
+            'karma-phantomjs-shim',
+            'karma-mocha',
+            'karma-sourcemap-loader',
+            'karma-webpack',
+            'karma-coverage',
+            'karma-mocha-reporter'
         ],
 
 
@@ -27,7 +39,8 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/**/*.js': ['coverage']
+            'src/**/*.jsx': ['coverage'],
+            'test/**/*.js': ['webpack', 'sourcemap']
         },
 
 
@@ -56,19 +69,23 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', /*'Firefox', 'Safari'*/ ],
+        browsers: ['PhantomJS', /*'Chrome', 'Firefox', 'Safari'*/ ],
 
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: false,
 
+
         // Concurrency level
         // how many browser should be started simultaneous
         concurrency: Infinity,
 
+
         coverageReporter: {
             reporters: [{ type: 'lcov' }]
         },
+
+        webpack: require('./.config/webpack-test.config')
     })
 }
