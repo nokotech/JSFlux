@@ -19,7 +19,7 @@ module.exports = function(config) {
         // list of files / patterns to load in the browser
         files: [
             'dist/**/*.js',
-            'test/**/*.js'
+            'test/**/*.jsx'
         ],
 
 
@@ -47,7 +47,7 @@ module.exports = function(config) {
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
             'dist/**/*.js': ['coverage'],
-            'test/**/*.js': ['webpack']
+            'test/**/*.jsx': ['webpack']
         },
 
 

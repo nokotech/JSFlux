@@ -11,8 +11,8 @@ export default class ListView extends Component {
     render() {
         return (
             <div>
-                <image src={this.props.imageUrl}></image>
-                <span>{this.props.text}</span>
+                <image className="list_img" src={this.props.imageUrl}></image>
+                <span className="list_test">{this.props.text}</span>
             </div>
         )
     }
