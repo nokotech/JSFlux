@@ -18,7 +18,7 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'src/**/*.jsx',
+            'dist/**/*.js',
             'test/**/*.js'
         ],
 
@@ -46,15 +46,24 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/**/*.jsx': ['webpack', 'sourcemap', 'coverage'],
-            'test/**/*.js': ['webpack', 'sourcemap']
+            'dist/**/*.js': ['coverage'],
+            'test/**/*.js': ['webpack']
         },
 
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage', /*'karma-remap-istanbul'*/],
+        reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
+        remapIstanbulReporter: {
+            remapOptions: {},
+            reportOptions: {},
+            reports: {
+                html: 'coverage/remap/html',
+                lcovonly: 'coverage/remap/lcov/lcov.info',
+                cobertura: 'coverage/remap/cobertura/cobertura.xml'
+            }
+        },
 
 
         // web server port
@@ -93,6 +102,6 @@ module.exports = function(config) {
             reporters: [{ type: 'lcov' }]
         },
 
-        webpack: require('./.config/webpack-test.config'),
+        webpack: require('./.config/webpack.config'),
     })
 }

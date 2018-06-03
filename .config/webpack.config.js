@@ -10,6 +10,7 @@ module.exports = {
     output: {
         path: path.resolve('./dist'),
         filename: "[name].bundle.js",
+        devtoolModuleFilenameTemplate: 'srcmap/[resource-path]',
     },
     resolve: {
         extensions: ['.ts', '.js', '.jsx'],
@@ -17,7 +18,10 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js[x]$/,
-            use: 'babel-loader'
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader'
+            }
         }]
     },
 };
