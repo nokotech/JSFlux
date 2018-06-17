@@ -10,11 +10,14 @@
         "codecov": "codecov",
         "webpack": "webpack --config .config/webpack.config.js",
         "watch": "webpack -w --config .config/webpack.config.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "server": "webpack-dev-server --config .config/webpack.config.js"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@material-ui/core": "^1.2.1",
+        "@material-ui/icons": "^1.1.0",
         "babel-loader": "^7.1.4",
         "babel-preset-react": "^6.24.1",
         "chai": "^4.1.2",
@@ -38,6 +41,7 @@
         "karma-safari-launcher": "^1.0.0",
         "karma-sourcemap-loader": "^0.3.7",
         "karma-webpack": "^3.0.0",
+        "lodash": "^4.17.10",
         "mocha": "^5.2.0",
         "react": "^16.4.0",
         "react-addons-test-utils": "^15.6.2",
@@ -45,8 +49,10 @@
         "react-jsx": "^1.0.0",
         "react-test-renderer": "^16.4.0",
         "requirejs": "^2.3.5",
+        "sinon": "^6.0.0",
         "webpack": "^4.10.2",
-        "webpack-cli": "^2.1.4"
+        "webpack-cli": "^2.1.4",
+        "webpack-dev-server": "^3.1.4"
     },
     "dependencies": {}
 }

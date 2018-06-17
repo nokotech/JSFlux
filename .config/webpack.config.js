@@ -24,4 +24,11 @@ module.exports = {
             }
         }]
     },
+    devServer: {
+        contentBase: 'dist',
+        historyApiFallback: true,
+        port: 3333,
+        inline: true,
+        // hot: true
+    }
 };

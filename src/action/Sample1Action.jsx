@@ -7,13 +7,13 @@ class Sample1Action {
 
     constructor() {
         /** Action List. */
-        this.ACTION_TYPE_TEST = "test"
+        this.ACTION_TYPE_TAP_BUTTON = "tap button"
     }
 
-    test(val) {
-        console.log("Sample1Action.test")
+    tapButton(val) {
+        console.log(`${this.constructor.name} - ${this.tapButton.name}`)
         AppDispatcher.dispatch({
-            actionType: this.ACTION_TYPE_TEST,
+            actionType: this.ACTION_TYPE_TAP_BUTTON,
             value: val
         });
     }
