@@ -1,3 +1,6 @@
+var webpack = require('webpack');
+var isparta = require('isparta');
+
 // Karma configuration
 // Generated on Wed May 30 2018 17:01:05 GMT+0900 (JST)
 
@@ -10,31 +13,61 @@ module.exports = function(config) {
 
         // frameworks to use
         // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['mocha', 'chai'],
+        frameworks: ['mocha'],
 
 
         // list of files / patterns to load in the browser
         files: [
-            'src/*.js',
-            'test/*.js'
+            'dist/**/*.js',
+            // 'src/**/*.jsx',
+            'test/**/*.jsx'
+        ],
+
+
+        // [Add babel] plugins
+        plugins: [
+            'karma-phantomjs-launcher',
+            'karma-phantomjs-shim',
+            'karma-mocha',
+            'karma-sourcemap-loader',
+            'karma-webpack',
+            'karma-coverage',
+            'karma-mocha-reporter',
+            'karma-chrome-launcher',
+            'karma-coverage-istanbul-reporter',
+            'karma-remap-istanbul',
+            'istanbul-instrumenter-loader'
         ],
 
 
         // list of files / patterns to exclude
-        exclude: [],
+        exclude: [
+            // 'node_modules/**/*'
+        ],
 
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
-            'src/**/*.js': ['coverage']
+            'dist/**/*.js': ['coverage'],
+            // 'src/**/*.jsx': ['webpack'],
+            'test/**/*.jsx': ['webpack']
         },
 
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
         // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-        reporters: ['progress', 'coverage'],
+        reporters: ['progress', 'coverage', 'karma-remap-istanbul'],
+        remapIstanbulReporter: {
+            remapOptions: {},
+            reportOptions: {},
+            reports: {
+                html: 'coverage/remap/html',
+                lcovonly: 'coverage/remap/lcov/lcov.info',
+                cobertura: 'coverage/remap/cobertura/cobertura.xml'
+            }
+        },
 
 
         // web server port
@@ -47,7 +80,7 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_WARN,
 
 
         // enable / disable watching file and executing tests whenever any file changes
@@ -56,19 +89,23 @@ module.exports = function(config) {
 
         // start these browsers
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['Chrome', /*'Firefox', 'Safari'*/ ],
+        browsers: [/*'PhantomJS',*/ 'Chrome',/* 'Firefox', 'Safari'*/ ],
 
 
         // Continuous Integration mode
         // if true, Karma captures browsers, runs the tests and exits
         singleRun: false,
 
+
         // Concurrency level
         // how many browser should be started simultaneous
         concurrency: Infinity,
 
+
         coverageReporter: {
             reporters: [{ type: 'lcov' }]
         },
+
+        webpack: require('./.config/webpack.config'),
     })
 }

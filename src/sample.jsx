@@ -2,6 +2,6 @@
  * テストする関数
  * @param {String} str 
  */
-function sample1(str) {
+export function sampleMethod1(str) {
     return "-----"
 }
