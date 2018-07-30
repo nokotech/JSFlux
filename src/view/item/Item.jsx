@@ -3,6 +3,7 @@ import { Container } from 'flux/utils';
 import { withStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 
 import Sample1Action from '../../action/Sample1Action'
 import Sample1Store from '../../store/Sample1Store'
@@ -34,8 +35,8 @@ class Item extends React.Component {
             <Grid item xs={12}>
                 <Paper className={this.classes.paper}>
                     <div>Sample Text.</div>
-                    <button onClick={this.props.tap}>Tap Please!</button>
                     <div className="text">{this.state.sample1Store.value[this.props.index]}</div>
+                    <Button variant="outlined" color="secondary" onClick={this.props.tap}>Tap Please!</Button>
                 </Paper>
             </Grid>
         )
